@@ -1,7 +1,9 @@
 package org.hjeom.book.service.posts;
 
 import lombok.RequiredArgsConstructor;
+import org.hjeom.book.domain.posts.Posts;
 import org.hjeom.book.domain.posts.PostsRepository;
+import org.hjeom.book.web.dto.PostsResponseDto;
 import org.hjeom.book.web.dto.PostsSaveRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,5 +16,12 @@ public class PostsService {
     @Transactional
     public Long save(PostsSaveRequestDto requestDto) {
         return postsRepository.save(requestDto.toEntity()).getId();
+    }
+
+    public PostsResponseDto findById(Long id) {
+        Posts entity = postsRepository.findById(id)
+                                    .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+
+        return new PostsResponseDto(entity);
     }
 }
