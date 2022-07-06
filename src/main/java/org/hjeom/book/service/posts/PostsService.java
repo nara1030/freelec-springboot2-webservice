@@ -5,6 +5,7 @@ import org.hjeom.book.domain.posts.Posts;
 import org.hjeom.book.domain.posts.PostsRepository;
 import org.hjeom.book.web.dto.PostsResponseDto;
 import org.hjeom.book.web.dto.PostsSaveRequestDto;
+import org.hjeom.book.web.dto.PostsUpdateRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,5 +24,14 @@ public class PostsService {
                                     .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
 
         return new PostsResponseDto(entity);
+    }
+
+    @Transactional
+    public Long update(Long id, PostsUpdateRequestDto requestDto) {
+        Posts posts = postsRepository.findById(id)
+                                    .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+        posts.update(requestDto.getTitle(), requestDto.getContent());
+
+        return id;
     }
 }

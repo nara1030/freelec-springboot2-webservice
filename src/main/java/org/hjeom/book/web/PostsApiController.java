@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.hjeom.book.service.posts.PostsService;
 import org.hjeom.book.web.dto.PostsResponseDto;
 import org.hjeom.book.web.dto.PostsSaveRequestDto;
+import org.hjeom.book.web.dto.PostsUpdateRequestDto;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -19,5 +20,10 @@ public class PostsApiController {
     @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);
+    }
+
+    @PutMapping("/api/v1/posts/{id}")
+    public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
+        return postsService.update(id, requestDto);
     }
 }
