@@ -3,11 +3,15 @@ package org.hjeom.book.service.posts;
 import lombok.RequiredArgsConstructor;
 import org.hjeom.book.domain.posts.Posts;
 import org.hjeom.book.domain.posts.PostsRepository;
+import org.hjeom.book.web.dto.PostsListResponseDto;
 import org.hjeom.book.web.dto.PostsResponseDto;
 import org.hjeom.book.web.dto.PostsSaveRequestDto;
 import org.hjeom.book.web.dto.PostsUpdateRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -33,5 +37,13 @@ public class PostsService {
         posts.update(requestDto.getTitle(), requestDto.getContent());
 
         return id;
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc()
+                            .stream()
+                            .map(PostsListResponseDto::new)
+                            .collect(Collectors.toList());
     }
 }
