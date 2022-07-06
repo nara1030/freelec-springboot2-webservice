@@ -1,9 +1,11 @@
 package org.hjeom.book.web.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hjeom.book.domain.posts.Posts;
 
 @Getter
+@NoArgsConstructor
 public class PostsResponseDto {
     private Long id;
     private String title;

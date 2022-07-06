@@ -2,6 +2,7 @@ package org.hjeom.book.web;
 
 import org.hjeom.book.domain.posts.Posts;
 import org.hjeom.book.domain.posts.PostsRepository;
+import org.hjeom.book.web.dto.PostsResponseDto;
 import org.hjeom.book.web.dto.PostsSaveRequestDto;
 import org.junit.After;
 import org.junit.Test;
@@ -57,5 +58,31 @@ public class PostsApiControllerTest {
         List<Posts> postsList = postsRepository.findAll();
         assertThat(postsList.get(0).getTitle()).isEqualTo(title);
         assertThat(postsList.get(0).getContent()).isEqualTo(content);
+    }
+
+    @Test
+    public void Post_조회한다() throws Exception {
+        // given
+        String title = "title";
+        String content = "content";
+        PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
+                .title(title)
+                .content(content)
+                .author("author")
+                .build();
+        String url = "http://localhost:" + port + "/api/v1/posts";
+
+        // when
+        restTemplate.postForEntity(url, requestDto, Long.class);
+
+        // given
+        url = "http://localhost:" + port + "/api/v1/posts/1";
+
+        // when
+        ResponseEntity<PostsResponseDto> responseEntity = restTemplate.getForEntity(url, PostsResponseDto.class);
+
+        // then
+        assertThat(responseEntity.getBody().getTitle()).isEqualTo(title);
+        assertThat(responseEntity.getBody().getContent()).isEqualTo(content);
     }
 }
