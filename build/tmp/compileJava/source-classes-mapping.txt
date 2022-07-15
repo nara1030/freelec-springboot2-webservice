@@ -20,8 +20,8 @@ org/hjeom/book/web/dto/HelloResponseDto.java
  org.hjeom.book.web.dto.HelloResponseDto
 org/hjeom/book/domain/BaseTimeEntity.java
  org.hjeom.book.domain.BaseTimeEntity
-org/hjeom/book/config/auth/SecurityConfig.java
- org.hjeom.book.config.auth.SecurityConfig
+org/hjeom/book/config/auth/CustomOAuth2UserService.java
+ org.hjeom.book.config.auth.CustomOAuth2UserService
 org/hjeom/book/web/dto/PostsListResponseDto.java
  org.hjeom.book.web.dto.PostsListResponseDto
 org/hjeom/book/web/PostsApiController.java
@@ -39,7 +39,13 @@ org/hjeom/book/domain/posts/Posts.java
  org.hjeom.book.domain.posts.Posts$PostsBuilder
 org/hjeom/book/config/auth/dto/SessionUser.java
  org.hjeom.book.config.auth.dto.SessionUser
-org/hjeom/book/config/auth/CustomOAuth2UserService.java
- org.hjeom.book.config.auth.CustomOAuth2UserService
+org/hjeom/book/config/auth/LoginUserArgumentResolver.java
+ org.hjeom.book.config.auth.LoginUserArgumentResolver
+org/hjeom/book/config/WebConfig.java
+ org.hjeom.book.config.WebConfig
 org/hjeom/book/web/IndexController.java
  org.hjeom.book.web.IndexController
+org/hjeom/book/config/auth/LoginUser.java
+ org.hjeom.book.config.auth.LoginUser
+org/hjeom/book/config/auth/SecurityConfig.java
+ org.hjeom.book.config.auth.SecurityConfig
